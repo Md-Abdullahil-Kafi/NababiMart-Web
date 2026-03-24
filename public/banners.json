@@ -1,0 +1,24 @@
+[
+  {
+    "_id": "1",
+    "title": "Discover Products That Match Your Lifestyle",
+    "subtitle": "Explore stylish, practical, and affordable products for your everyday needs.",
+    "badge": "Trending Collection",
+    "image": "https://example.com/banner1.jpg",
+    "buttonText": "Shop Now",
+    "buttonLink": "/products",
+    "isActive": true,
+    "order": 1
+  },
+  {
+    "_id": "2",
+    "title": "Fresh Picks for Modern Living",
+    "subtitle": "Browse newly added products with better quality and modern design.",
+    "badge": "New Arrivals",
+    "image": "https://example.com/banner2.jpg",
+    "buttonText": "Explore",
+    "buttonLink": "/products",
+    "isActive": true,
+    "order": 2
+  }
+]
