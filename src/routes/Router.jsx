@@ -18,6 +18,7 @@ import AdminDashboard from "../pages/admin/AdminDashboard";
 import AdminBanners from "../pages/admin/AdminBanners";
 import AdminProducts from "../pages/admin/AdminProducts";
 import AdminOrders from "../pages/admin/AdminOrders";
+import Register from "../pages/Register";
 
 const router = createBrowserRouter([
   {
@@ -62,6 +63,8 @@ const router = createBrowserRouter([
       },
 
       { path: "login", element: <Login /> },
+      { path: "register", element: <Register /> },
+      
     ],
   },
 

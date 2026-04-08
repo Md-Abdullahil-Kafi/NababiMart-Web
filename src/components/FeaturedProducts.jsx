@@ -26,7 +26,7 @@ const FeaturedProducts = () => {
 
           <Link
             to="/products"
-            className="inline-flex items-center justify-center px-5 py-3 rounded-xl border border-slate-300 text-slate-300 hover:bg-slate-50 hover:text-black transition"
+            className="inline-flex items-center justify-center px-5 py-3 rounded-md border border-slate-300 text-slate-300 hover:bg-slate-50 hover:text-black transition"
           >
             View All Products
           </Link>

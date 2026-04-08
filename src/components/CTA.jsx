@@ -4,7 +4,7 @@ const CTA = () => {
   return (
     <section className="py-20 bg-slate-950">
       <div className="max-w-5xl mx-auto px-4">
-        <div className="rounded-[28px] bg-gradient-to-r from-violet-600 to-indigo-600 p-12 text-center shadow-xl">
+        <div className="rounded-md bg-gradient-to-r from-violet-600 to-indigo-600 p-12 text-center shadow-xl">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Start Shopping Today 🚀
           </h2>

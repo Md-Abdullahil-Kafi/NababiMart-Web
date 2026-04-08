@@ -34,7 +34,7 @@ const Features = () => {
           {features.map((item) => (
             <div
               key={item.title}
-              className="bg-slate-950 border border-slate-800 rounded-2xl p-6 hover:bg-slate-800 transition"
+              className="bg-slate-950 border border-slate-800 rounded-md p-6 hover:bg-slate-800 transition"
             >
               <h3 className="text-white font-semibold mb-2">
                 {item.title}

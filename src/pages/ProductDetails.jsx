@@ -24,7 +24,7 @@ const ProductDetails = () => {
           <img
             src={data.image}
             alt={data.title}
-            className="h-80 object-contain"
+            className="object-contain"
           />
         </div>
 
@@ -38,7 +38,7 @@ const ProductDetails = () => {
           <p className="text-lg mb-4">{data.description}</p>
 
           <p className="text-2xl font-bold text-primary mb-4">
-            ${data.price}
+            {data.price} <span className="text-3xl">৳</span>
           </p>
 
           <button

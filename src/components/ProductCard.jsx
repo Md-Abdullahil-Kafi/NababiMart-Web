@@ -2,13 +2,18 @@ import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
   return (
-    <div className="group rounded-2xl border border-slate-800 bg-slate-900/80 hover:bg-slate-900 transition duration-300 overflow-hidden shadow-sm hover:shadow-xl">
-      <div className="bg-slate-950 p-6 h-64 flex items-center justify-center">
+    <div className="group rounded-md border border-slate-800 bg-slate-900/80 hover:bg-slate-900 transition duration-300 overflow-hidden shadow-sm hover:shadow-xl">
+      {/* <div className="bg-slate-950 w-full  flex items-center justify-center">
         <img
           src={product.image}
           alt={product.title}
-          className="max-h-44 object-contain group-hover:scale-105 transition duration-300"
+          className=" w-full object-contain group-hover:scale-105 transition duration-300"
         />
+      </div> */}
+      <div className="hover-3d">
+        <figure className="max-w-100 h-[200px]">
+          <img src={product.image} alt={product.title} />
+        </figure>
       </div>
 
       <div className="p-5">
@@ -22,7 +27,7 @@ const ProductCard = ({ product }) => {
 
         <div className="mt-4 flex items-center justify-between">
           <span className="text-xl font-bold text-violet-400">
-            ${product.price}
+            {product.price} <span className="text-3xl">৳</span>
           </span>
 
           <Link

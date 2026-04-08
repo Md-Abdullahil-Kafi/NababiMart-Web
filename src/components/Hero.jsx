@@ -8,7 +8,11 @@ import "swiper/css/pagination";
 import { getAllBanners } from "../api/banner";
 
 const Hero = () => {
-  const { data: banners = [], isLoading, isError } = useQuery({
+  const {
+    data: banners = [],
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ["banners"],
     queryFn: getAllBanners,
   });
@@ -46,20 +50,20 @@ const Hero = () => {
           loop={true}
           autoplay={{ delay: 4000, disableOnInteraction: false }}
           pagination={{ clickable: true }}
-          className="rounded-[28px] overflow-hidden"
+          className="rounded-lg overflow-hidden"
         >
           {banners
             .filter((item) => item.isActive)
             .sort((a, b) => a.order - b.order)
             .map((slide) => (
               <SwiperSlide key={slide._id}>
-                <div className="grid md:grid-cols-2 gap-10 items-center bg-slate-900 border border-slate-800 rounded-[28px] px-6 md:px-12 py-12 md:py-16">
+                <div className="grid md:grid-cols-2 gap-3 items-center bg-slate-900 border border-slate-800 rounded-sm px-6 md:px-6 py-12 md:py-8">
                   <div>
                     <span className="inline-block px-4 py-1.5 rounded-full bg-violet-500/10 text-violet-400 text-sm font-semibold mb-5 border border-violet-500/20">
                       {slide.badge}
                     </span>
 
-                    <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-5">
+                    <h1 className="text-2xl md:text-5xl font-bold leading-tight mb-5">
                       {slide.title}
                     </h1>
 
@@ -75,11 +79,11 @@ const Hero = () => {
                     </Link>
                   </div>
 
-                  <div className="relative flex justify-center">
+                  <div className="relative rounded-md overflow-hidden flex justify-center">
                     <img
                       src={slide.image}
                       alt={slide.title}
-                      className="w-full max-w-md object-contain"
+                      className=" object-contain"
                     />
                   </div>
                 </div>
