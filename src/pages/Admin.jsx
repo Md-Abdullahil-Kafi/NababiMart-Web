@@ -1,12 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { formatBDT } from "../utils/currency";
 
 const Admin = () => {
-  const [orders, setOrders] = useState([]);
-
-  useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem("orders")) || [];
-    setOrders(stored);
-  }, []);
+  const [orders, setOrders] = useState(
+    () => JSON.parse(localStorage.getItem("orders")) || []
+  );
 
   const updateStatus = (id, newStatus) => {
     const updated = orders.map((order) =>
@@ -41,7 +39,7 @@ const Admin = () => {
             <tr key={order.id}>
               <td>{order.id}</td>
               <td>{order.userEmail}</td>
-              <td>${order.total}</td>
+              <td>{formatBDT(order.total)}</td>
               <td>{order.status}</td>
               <td className="flex gap-2">
                 <button

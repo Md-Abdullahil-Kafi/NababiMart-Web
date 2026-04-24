@@ -92,7 +92,7 @@ const SocialFab = () => {
             <path d="M12 5v14M5 12h14" />
           </svg> */}
 
-          <img className="rounded-full" src="11255982.gif" alt="" />
+          <img className="rounded-full" src="/11255982.gif" alt="Social links" />
         </button>
       </div>
     </div>

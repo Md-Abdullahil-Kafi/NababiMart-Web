@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getAllProducts } from "../api/products";
 import ProductCard from "./ProductCard";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
 const FeaturedProducts = () => {
   const { data = [], isLoading, isError } = useQuery({
@@ -39,7 +39,7 @@ const FeaturedProducts = () => {
         ) : (
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {featured.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <ProductCard key={product._id} product={product} />
             ))}
           </div>
         )}

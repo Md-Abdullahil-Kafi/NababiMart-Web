@@ -1,6 +1,6 @@
-import { Link } from "react-router";
-import { useCart } from "../context/CartContext";
-import { useAuth } from "../context/AuthContext";
+import { Link } from "react-router-dom";
+import { useCart } from "../context/useCart";
+import { useAuth } from "../context/useAuth";
 import { FaShoppingCart } from "react-icons/fa";
 
 const Navbar = () => {

@@ -1,19 +1,23 @@
 import { Outlet } from "react-router-dom";
 import AdminSidebar from "../pages/admin/AdminSidebar";
 import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 
 const AdminLayout = () => {
   return (
     <div className="min-h-screen bg-slate-950 text-white">
-        <Navbar></Navbar>
-      <div className="max-w-7xl mx-auto grid md:grid-cols-[260px_1fr]">
-        <AdminSidebar />
-        <main className="p-6 md:p-8">
-          <Outlet />
-        </main>
+      <Navbar />
+
+      <div className="max-w-7xl mx-auto px-4 py-6 md:py-8">
+        <div className="grid lg:grid-cols-[260px_1fr] gap-6">
+          <div className="lg:sticky lg:top-24 self-start">
+            <AdminSidebar />
+          </div>
+
+          <main className="bg-slate-900/70 border border-slate-800 rounded-2xl p-5 md:p-7">
+            <Outlet />
+          </main>
+        </div>
       </div>
-      <Footer></Footer>
     </div>
   );
 };

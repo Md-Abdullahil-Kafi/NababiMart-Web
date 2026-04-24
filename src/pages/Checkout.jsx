@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createOrder } from "../api/orders";
-import { useCart } from "../context/CartContext";
-import { useAuth } from "../context/AuthContext";
+import { useCart } from "../context/useCart";
+import { useAuth } from "../context/useAuth";
+import { formatBDT } from "../utils/currency";
 
 const Checkout = () => {
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ const Checkout = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,6 +35,7 @@ const Checkout = () => {
   const handlePlaceOrder = async (e) => {
     e.preventDefault();
     setError("");
+    setSuccessMessage("");
 
     if (!user) {
       setError("You must be logged in to place an order.");
@@ -41,6 +44,26 @@ const Checkout = () => {
 
     if (cart.length === 0) {
       setError("Your cart is empty.");
+      return;
+    }
+
+    if (!form.fullName.trim() || form.fullName.trim().length < 3) {
+      setError("Please enter a valid full name.");
+      return;
+    }
+
+    if (!/^\S+@\S+\.\S+$/.test(form.email)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+
+    if (!/^(\+?88)?01[3-9]\d{8}$/.test(form.phone)) {
+      setError("Please enter a valid Bangladesh phone number.");
+      return;
+    }
+
+    if (!form.address.trim() || !form.city.trim()) {
+      setError("Address and city are required.");
       return;
     }
 
@@ -73,7 +96,8 @@ const Checkout = () => {
 
       if (res?.success) {
         clearCart();
-        navigate("/profile");
+        setSuccessMessage("Order placed successfully.");
+        navigate("/payment-slip");
       } else {
         setError("Failed to place order.");
       }
@@ -162,6 +186,9 @@ const Checkout = () => {
             {error && (
               <p className="text-red-400 text-sm">{error}</p>
             )}
+            {successMessage && (
+              <p className="text-green-400 text-sm">{successMessage}</p>
+            )}
 
             <button
               type="submit"
@@ -199,7 +226,7 @@ const Checkout = () => {
                   </div>
 
                   <p className="font-semibold">
-                    ${item.price * item.quantity}
+                    {formatBDT(item.price * item.quantity)}
                   </p>
                 </div>
               ))
@@ -209,7 +236,7 @@ const Checkout = () => {
           <div className="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between">
             <span className="text-lg text-slate-300">Total</span>
             <span className="text-2xl font-bold text-violet-400">
-              ${totalPrice}
+              {formatBDT(totalPrice)}
             </span>
           </div>
         </div>

@@ -1,23 +1,21 @@
-import axios from "axios";
-
-const BASE_URL = "https://nababimart.vercel.app/api";
+import apiClient from "./client";
 
 export const getAllBanners = async () => {
-  const res = await axios.get(`${BASE_URL}/banners`);
-  return res.data.data; // 🔥 only array return
+  const res = await apiClient.get("/banners");
+  return res.data.data;
 };
 
 export const createBanner = async (bannerData) => {
-  const res = await axios.post(`${BASE_URL}/banners`, bannerData);
+  const res = await apiClient.post("/banners", bannerData);
   return res.data;
 };
 
 export const updateBanner = async (id, bannerData) => {
-  const res = await axios.patch(`${BASE_URL}/banners/${id}`, bannerData);
+  const res = await apiClient.patch(`/banners/${id}`, bannerData);
   return res.data;
 };
 
 export const deleteBanner = async (id) => {
-  const res = await axios.delete(`${BASE_URL}/banners/${id}`);
+  const res = await apiClient.delete(`/banners/${id}`);
   return res.data;
 };

@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   GoogleAuthProvider,
   signInWithPopup,
@@ -6,13 +6,11 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
 import { saveUser } from "../api/user";
-
-const AuthContext = createContext();
-
-export const useAuth = () => useContext(AuthContext);
+import { AuthContext } from "./auth-context-object";
 
 const provider = new GoogleAuthProvider();
 
@@ -26,8 +24,14 @@ const AuthProvider = ({ children }) => {
   };
 
   // Email Register
-  const register = (email, password) => {
-    return createUserWithEmailAndPassword(auth, email, password);
+  const register = async (email, password, profile = {}) => {
+    const cred = await createUserWithEmailAndPassword(auth, email, password);
+    if (profile?.name) {
+      await updateProfile(cred.user, {
+        displayName: profile.name,
+      });
+    }
+    return cred;
   };
 
   // Email Login

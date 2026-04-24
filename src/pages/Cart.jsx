@@ -1,5 +1,6 @@
-import { useCart } from "../context/CartContext";
-import { Link } from "react-router";
+import { useCart } from "../context/useCart";
+import { Link } from "react-router-dom";
+import { formatBDT } from "../utils/currency";
 
 const Cart = () => {
   const {
@@ -25,7 +26,7 @@ const Cart = () => {
         <div className="md:col-span-2 space-y-4">
           {cart.map((item) => (
             <div
-              key={item.id}
+              key={item._id}
               className="flex items-center justify-between border rounded-lg p-4"
             >
               <div className="flex items-center gap-4">
@@ -39,7 +40,7 @@ const Cart = () => {
                     {item.title}
                   </h3>
                   <p className="text-primary font-bold">
-                    ${item.price}
+                    {formatBDT(item.price)}
                   </p>
                 </div>
               </div>
@@ -83,7 +84,7 @@ const Cart = () => {
           </p>
 
           <p className="text-xl font-bold mb-4">
-            Total: ${totalPrice.toFixed(2)}
+            Total: {formatBDT(totalPrice)}
           </p>
 
           <Link to="/checkout">

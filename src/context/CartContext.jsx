@@ -1,8 +1,5 @@
-import { createContext, useContext, useState } from "react";
-
-const CartContext = createContext();
-
-export const useCart = () => useContext(CartContext);
+import { useState } from "react";
+import { CartContext } from "./cart-context-object";
 
 const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
@@ -55,6 +52,11 @@ const CartProvider = ({ children }) => {
     setCart([]);
   };
 
+  const setSingleProductCart = (product) => {
+    if (!product?._id) return;
+    setCart([{ ...product, quantity: 1 }]);
+  };
+
   // 💰 Total price
   const totalPrice = cart.reduce(
     (total, item) => total + item.price * item.quantity,
@@ -76,6 +78,7 @@ const CartProvider = ({ children }) => {
         increaseQty,
         decreaseQty,
         clearCart,
+        setSingleProductCart,
         totalPrice,
         totalItems,
       }}
